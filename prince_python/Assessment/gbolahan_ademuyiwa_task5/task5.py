@@ -1,0 +1,11 @@
+# Task5: Modify Tuple Indirectly Ask a user to enter three items for their shopping list.
+shopping_list = (input("Enter List 1: "), input("Enter List 2: "), input("Enter List 3: "))
+print(shopping_list)
+lst = list(shopping_list)
+shopping2 = (input("Enter List 4: "))
+shopping3 = (input("Enter List 5: "))
+lst.append(shopping2)
+lst.append(shopping3)
+shopping_list = tuple(lst)
+joined = "|".join(shopping_list)
+print(joined)

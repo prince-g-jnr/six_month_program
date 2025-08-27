@@ -1,0 +1,13 @@
+# Task6: Attendance Tracker
+month = ("January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+student_name = input("Student's Name: ")
+gender = input("Gender: ")
+course_track = input("Course Track: ")
+month_number = int(input("Current Month Number(1-12): "))
+week_number = int(input("Current Day Number(1-7): "))
+print(f"\n\nStudent Name:\t\t{student_name}")
+print(f"\nGender:\t\t\t{gender}")
+print(f"\nCourse Track:\t\t{course_track}")
+print(f"\nCurrent Month Number:\t{month[month_number -1]}")
+print(f"\nCurrent Week Number:\t{week[week_number -1]}")
