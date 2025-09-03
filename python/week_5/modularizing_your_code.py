@@ -214,3 +214,29 @@ print(adunni_acount.deposit(25000))
 print(adunni_acount.withdraw(10000))
 print(adunni_acount.transfer(15000, "Sunday James"))
 print(adunni_acount.check_balance())
+
+# Atttibutes vs Methods
+# Given this class, identify the attributes and methods
+
+class NaijaPhone:
+    def __init__(self, brand, model, network_provider):
+        self.brand = brand
+        self.model = model
+        self.network_provider = network_provider
+        self.airtime_balance = 0
+        self.data_balance = 0
+        self.is_on = False
+
+    def power_on(self):
+        self.is_on = True
+        return f"{self.brand} phone is now on. Network: {self.network_provider}"
+    
+    def buy_airtime(self, amount):
+        self.airtime_balance += amount
+        return f"₦{amount} airtime purchased. Balance: ₦{self.airtime_balance}"
+    
+    def make_call(self, number):
+        if self.is_on and self.airtime_balance > 0:
+            self.airtime_balance -= 10
+            return f"Calling {number}... Remaining airtime: ₦{self.airtime_balance}"
+        
