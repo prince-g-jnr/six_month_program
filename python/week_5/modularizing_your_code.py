@@ -209,6 +209,8 @@ print(f"owner: {adunni_acount.owner}")
 print(f"Bank: {adunni_acount.bank_name}")
 print(f"Account Number: {adunni_acount.account_number}")
 
+
+
 # Methods (actions)
 print(adunni_acount.deposit(25000))
 print(adunni_acount.withdraw(10000))
@@ -239,4 +241,127 @@ class NaijaPhone:
         if self.is_on and self.airtime_balance > 0:
             self.airtime_balance -= 10
             return f"Calling {number}... Remaining airtime: ₦{self.airtime_balance}"
-        
+    
+    def send_sms(self, message, number):
+        if self.airtime_balance >= 4:
+            self.airtime_balance -= 4
+            return f"SMS sent to {number}: '{message}'. Remaining airtime: ₦{self.airtime_balance}"
+        return "Insufficient airtime to send SMS"
+    
+# Creating the user details
+emmanuel_phone = NaijaPhone("Xiaomi", "Redmi", "MTN")
+
+# Attribues (characteristics)
+print(emmanuel_phone.brand)
+print(emmanuel_phone.model)
+print(emmanuel_phone.network_provider)
+    
+# Method (actions)
+print(emmanuel_phone.power_on())
+print(emmanuel_phone.buy_airtime(500))
+print(emmanuel_phone.make_call(+2347061265068))
+print(emmanuel_phone.send_sms(+2347081265068, "Mr chris"))
+
+    
+# Given this class, identity the attributes and methods
+
+class BRTBus:
+    def __init__(self, route, bus_number):
+        self.route = route
+        self.bus_number = bus_number
+        self.current_stop = "Ikorodu"
+        self.passenger_count = 0
+        self.fare = 300
+
+    def announce_stop(self):
+        return f"Next stop: {self.current_stop}. Fare is ₦{self.fare}"
+    
+    def board_passenger(self, count):
+        self.passenger_count += count
+        return f"{count} passenger boared. Total: {self.passenger_count}"
+    
+# creating drivers details
+mr_duada = BRTBus("Oshodi", "EPE-123ZE")
+
+# Attributes (Characteristics)
+print(mr_duada.route)
+print(mr_duada.bus_number)
+
+# Method (action)
+print(mr_duada.announce_stop())
+print(mr_duada.board_passenger(50))
+
+# Given this class, identity the attributes and methods
+
+class MarketTrader:
+    def __init__(self, name, market_name, goods):
+        self.name = name
+        self.market_name = market_name
+        self.goods = goods
+        self.daily_sales = 0
+
+    def advertise_good(self):
+        return f"{self.name} at {self.market_name}: Fresh {', '.join(self.goods)} available!"
+    
+    def make_sale(self, amount):
+        self.daily_sales += amount
+        return f"Sale made! Today's total: ₦{self.daily_sales}"
+    
+# Creating Marketers Details
+mama_t = MarketTrader("Mama T", "Ijoko Market", ["Soft Drinks", "Event Rental"])
+
+# Attributes (Characteristics)
+print(mama_t.name)
+print(mama_t.market_name)
+print(mama_t.goods)
+
+# Methods (action)
+print(mama_t.advertise_good())
+print(mama_t.make_sale(5000))
+
+# Encapsulation
+class NigerianBankAccount:
+    def __init__(self, owner, initial_balance=0):
+        self.owner = owner
+        self.balance = initial_balance
+        self.__pin = "1234"
+        self._transaction_history = []
+
+    # Public methods - anyone can use these
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            self._transaction_history.append(f"Deposited ₦{amount:,}")
+            return f"₦{amount:,} deposited successfully"
+        return "Invalid deposit amount"
+    
+    def withdraw(self, amount, pin):
+        if self.__verify_pin(pin):
+            if amount <= self.balance:
+                self.balance -= amount
+                self._transaction_history.append(f"withdrew ₦{amount:,}")
+                return f"₦{amount:,} withdrawn successfully"
+            return "Insufficient funds"
+        return "Invalid PIN"
+    
+    def check_balance(self, pin):
+        if self.__verify_pin(pin):
+            return f"Current Balance: ₦{self.balance:,}"
+        return "Invalid PIN"
+    
+    # Private method - only the class can use this
+    def __verify_pin(self, entered_pin):
+        return entered_pin == self.__pin
+    
+    # Protected method - subclasses can use this
+    def _get_transaction_history(self):
+        return self._transaction_history.copy()
+
+# Using the encapsulated account
+ibrahim_account = NigerianBankAccount("Ibrahim Konate", 50000)
+
+# These work - public interface
+print(ibrahim_account.deposit(10000))
+print(ibrahim_account.check_balance("1234"))
+print(ibrahim_account.withdraw(5000, "1234"))
+print(ibrahim_account.check_balance("1234"))
