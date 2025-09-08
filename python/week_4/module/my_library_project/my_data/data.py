@@ -1,4 +1,4 @@
-# my_data/data
+# my_data/data.py
 
 import json
 import os

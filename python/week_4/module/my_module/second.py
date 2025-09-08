@@ -8,4 +8,4 @@ def count_characters(string):
     return len(string)
 
 def count_words(string):
-    return 
+    return len(string.split())
